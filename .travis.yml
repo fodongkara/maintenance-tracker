@@ -12,6 +12,7 @@ addons:
 
 install:
   - pip install -r requirements.txt
+  - pip install coveralls
 
 before_script:
   - psql -c "CREATE DATABASE test_db;" -U postgres
@@ -22,3 +23,7 @@ before_script:
 
 script:
   - python manage.py test
+  - coverage run --source=. manage.py test
+
+after_script:
+  - coveralls

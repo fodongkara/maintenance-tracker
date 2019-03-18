@@ -24,6 +24,7 @@ from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 from auth.views import UserViewSet, UserRegisterViewSet
 from maintainance_requests.views import MaintainanceRequestViewSet
+from rest_framework_jwt.views import obtain_jwt_token
 
 
 
@@ -34,5 +35,6 @@ router.register('api/v1/requests', MaintainanceRequestViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('api/v1/auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api/v1/auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/v1/auth/signin/', obtain_jwt_token),
 ]

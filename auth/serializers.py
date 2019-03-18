@@ -10,7 +10,7 @@ class UserSerializer(HyperlinkedModelSerializer):
         fields = ('url', 'username', 'email', 'password',
                   'first_name', 'last_name', 'date_joined')
         extra_kwargs = {'email': {'allow_blank': False, 'required': True, 'validators': [
-            UniqueValidator(queryset=User.objects.all())]}}
+            UniqueValidator(queryset=User.objects.all())]},'password': {'write_only': True}}
 
     def create(self, validated_data):
         username = validated_data['username']

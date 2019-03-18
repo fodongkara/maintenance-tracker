@@ -1,8 +1,8 @@
 # Maintenance Tracker
 
-[![Coverage Status](https://coveralls.io/repos/github/3Nakajugo/maintenance-tracker/badge.svg?branch=master)](https://coveralls.io/github/3Nakajugo/maintenance-tracker?branch=master)
-
+[![Coverage Status](https://coveralls.io/repos/github/3Nakajugo/maintenance-tracker/badge.svg?branch=ft-codeclimate-164393081)](https://coveralls.io/github/3Nakajugo/maintenance-tracker?branch=ft-codeclimate-164393081)
 [![Build Status](https://travis-ci.org/fodongkara/maintenance-tracker.svg?branch=develop)](https://travis-ci.org/fodongkara/maintenance-tracker)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ba3df7af94b1e38f81d5/maintainability)](https://codeclimate.com/github/3Nakajugo/maintenance-tracker/maintainability)
 =======
 ## Introduction
 
