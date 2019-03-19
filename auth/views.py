@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from rest_framework.viewsets import ModelViewSet
 from auth.serializers import UserSerializer 
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny,IsAdminUser
 
 class UserViewSet(ModelViewSet):
     """API Endpoint for viewing and editting user details"""
