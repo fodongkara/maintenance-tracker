@@ -28,8 +28,10 @@ class MaintainanceRequestViewSet(ModelViewSet):
         
     def list(self, request):
         if request.user.is_superuser:
-            permission_classes = (IsAdminUser,)
             queryset = MaintainanceRequest.objects.all()
-            serializer = MaintainanceRequestSerializer(queryset, many=True,context={'request': request})
-            return Response(serializer.data)
-        return Response('Un Authorised, you need admin rights')
+        else:
+            user = request.user
+            queryset = MaintainanceRequest.objects.filter(author=user)
+        serializer = MaintainanceRequestSerializer(queryset, many=True,context={'request': request})
+        return Response(serializer.data)
+        
