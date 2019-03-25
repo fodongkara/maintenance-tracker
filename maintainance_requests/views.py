@@ -28,7 +28,7 @@ class MaintainanceRequestViewSet(ModelViewSet):
         elif "status" in self.request.data:
             return Response({'Message': 'You have successfully register'})
         elif not self.request.user.is_superuser:
-            serializer.save(author=self.request.user)
+            serializer.save()
         
     def list(self, request):
         status = self.request.query_params.get('status') # List of ids
