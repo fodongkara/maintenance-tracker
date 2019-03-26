@@ -1,11 +1,11 @@
 from maintainance_requests.models import MaintainanceRequest
 from rest_framework.serializers import HyperlinkedModelSerializer, PrimaryKeyRelatedField, CurrentUserDefault, ValidationError
 from rest_framework import serializers
+from auth.serializers import UserSerializer 
 
 
 class MaintainanceRequestSerializer(HyperlinkedModelSerializer):
-    author = PrimaryKeyRelatedField(
-        read_only=True, default=serializers.CurrentUserDefault())
+    author = UserSerializer(read_only=True)
     status = 'pending'
 
     def validate_status(self, status):
