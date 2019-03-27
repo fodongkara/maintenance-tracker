@@ -32,14 +32,19 @@ class MaintainanceRequestViewSet(ModelViewSet):
         
     def list(self, request):
         status = self.request.query_params.get('status') # List of ids
+        my_search = self.request.query_params.get('search')
         if request.user.is_superuser:
             queryset = MaintainanceRequest.objects.all()
             if status:
-                queryset = MaintainanceRequest.objects.all().filter(status=status) 
+                queryset = MaintainanceRequest.objects.all().filter(status=status)
+            if my_search:
+                queryset = self.filter_queryset(queryset)
         else:
             user = request.user
             queryset = MaintainanceRequest.objects.all().filter(author=user)
             if status:
                 queryset = MaintainanceRequest.objects.all().filter(author=user,status=status)
+            if my_search:
+                queryset = self.filter_queryset(queryset)
         serializer = MaintainanceRequestSerializer(queryset, many=True,context={'request': request})
         return Response(serializer.data)
