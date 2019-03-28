@@ -30,7 +30,7 @@ class MaintainanceRequestViewSet(ModelViewSet):
         if self.request.user.is_superuser and "status" in self.request.data:
             serializer.save()
         elif "status" in self.request.data:
-            return Response({'Message': 'You have successfully register'})
+            return Response({'Message': 'You have no rights to change status'})
         elif not self.request.user.is_superuser:
             serializer.save()
         
