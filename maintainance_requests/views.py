@@ -9,6 +9,10 @@ from rest_framework.filters import (
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
+from rest_framework.exceptions import APIException
+from rest_framework import status
+from django.http import JsonResponse
+import logging
 
 class MaintainanceRequestViewSet(ModelViewSet):
     """API Endpoint for viewing and editting user details"""
@@ -26,7 +30,7 @@ class MaintainanceRequestViewSet(ModelViewSet):
         if self.request.user.is_superuser and "status" in self.request.data:
             serializer.save()
         elif "status" in self.request.data:
-            return Response({'Message': 'You have successfully register'})
+            return Response({'Message': 'You have no rights to change status'})
         elif not self.request.user.is_superuser:
             serializer.save()
         
@@ -43,3 +47,5 @@ class MaintainanceRequestViewSet(ModelViewSet):
                 queryset = MaintainanceRequest.objects.all().filter(author=user,status=status)
         serializer = MaintainanceRequestSerializer(queryset, many=True,context={'request': request})
         return Response(serializer.data)
+        if not request.user.is_superuser:
+            return Response()
