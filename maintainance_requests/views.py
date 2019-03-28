@@ -47,3 +47,5 @@ class MaintainanceRequestViewSet(ModelViewSet):
                 queryset = MaintainanceRequest.objects.all().filter(author=user,status=status)
         serializer = MaintainanceRequestSerializer(queryset, many=True,context={'request': request})
         return Response(serializer.data)
+        if not request.user.is_superuser:
+            return Response()
